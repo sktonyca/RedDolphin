@@ -1,0 +1,2 @@
+# RedDolphin
+Experimental Discord bot
