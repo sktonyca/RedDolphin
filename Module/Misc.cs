@@ -9,32 +9,54 @@ namespace RedDolphin.Module
 {
     public class Misc : ModuleBase<SocketCommandContext>
     {
-        [Command("dol")]
-        public async Task Echo()
+        /*
+            [Command("")]
+
+            public async Task Example([Remainder]string msg) //if taking multiple parameters
+            {
+                var embed = new EmbedBuilder();
+                embed.WithTitle("Dolphin Message"); // title of the message
+                //embed.WithDescription(msg); // text for the message
+                embed.WithColor(new Color(64, 161, 255)); // #40A1FF set the color of the message
+                embed.WithImageUrl("https://i.imgur.com/SFvJmge.jpg"); // Dolphin pic
+
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
+        */
+
+        [Command("dol")] // Return a picture of a Dolphin
+        public async Task Dol()
         {
             var embed = new EmbedBuilder();
             embed.WithTitle("Dolphin Message");
-            //embed.WithDescription(msg); // if return the same message
+            embed.WithDescription("Here's a Dolphin");
             embed.WithColor(new Color(64, 161, 255)); // #40A1FF
             embed.WithImageUrl("https://i.imgur.com/SFvJmge.jpg"); // Dolphin pic
 
             await Context.Channel.SendMessageAsync("",false,embed.Build());
         }
 
-        /*
-        [Command("")]
+
+        [Command("time")]
 
         public async Task Example([Remainder]string msg) //if taking multiple parameters
         {
-            var embed = new EmbedBuilder();
-            embed.WithTitle("Dolphin Message");
-            //embed.WithDescription(msg); // if return the same message
-            embed.WithColor(new Color(64, 161, 255)); // #40A1FF
-            embed.WithImageUrl("https://i.imgur.com/SFvJmge.jpg"); // Dolphin pic
+            if (msg == "utc") // Return UTC
+            { 
+                var embed = new EmbedBuilder();
+                embed.WithTitle("Time Zone: " + TimeZoneInfo.Utc); // title of the message
+                embed.WithDescription((DateTime.UtcNow).ToString()); // text for the message
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
 
-            await Context.Channel.SendMessageAsync("", false, embed.Build());
+            if (msg == "local") // Return local time
+            {
+                var embed = new EmbedBuilder();
+                embed.WithTitle("Time Zone: " + TimeZoneInfo.Local); // title of the message
+                embed.WithDescription((DateTime.Now).ToString()); // text for the message
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
         }
-
-        */
+    
     }
 }
