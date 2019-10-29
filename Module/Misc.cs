@@ -44,7 +44,7 @@ namespace RedDolphin.Module
             if (msg == "utc") // Return UTC
             { 
                 var embed = new EmbedBuilder();
-                embed.WithTitle("Time Zone: " + TimeZoneInfo.Utc); // title of the message
+                embed.WithTitle(TimeZoneInfo.Utc.ToString()); // title of the message
                 embed.WithDescription((DateTime.UtcNow).ToString()); // text for the message
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
             }
@@ -52,8 +52,18 @@ namespace RedDolphin.Module
             if (msg == "local") // Return local time
             {
                 var embed = new EmbedBuilder();
-                embed.WithTitle("Time Zone: " + TimeZoneInfo.Local); // title of the message
+                embed.WithTitle(TimeZoneInfo.Local.StandardName.ToString()); // title of the message
                 embed.WithDescription((DateTime.Now).ToString()); // text for the message
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
+
+            if (msg == "kst") // Return Korea Standard Time
+            {
+                var embed = new EmbedBuilder();
+                TimeZoneInfo kst = TimeZoneInfo.FindSystemTimeZoneById("Korea Standard Time");
+                DateTime kstTime = TimeZoneInfo.ConvertTime(DateTime.Now, kst);
+                embed.WithTitle(kst.StandardName); // title of the message
+                embed.WithDescription(kstTime.ToString()); // text for the message
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
             }
         }
