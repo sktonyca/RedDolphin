@@ -35,7 +35,16 @@ namespace RedDolphin.Module
 
             await Context.Channel.SendMessageAsync("",false,embed.Build());
         }
+        [Command("help")] // Return list of commands that can be used
 
+        public async Task Help()
+        {
+            var embed = new EmbedBuilder();
+            embed.WithTitle("List of available Commands");
+            embed.WithDescription("$help: shows available commands \n$time parameter: shows time in a certain time zone" +
+                "\ncurrently supported time zones: UTC, Local, KST");
+            await Context.Channel.SendMessageAsync("", false, embed.Build());
+        }
 
         [Command("time")]
 
