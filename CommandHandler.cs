@@ -20,6 +20,7 @@ namespace RedDolphin
             _service = new CommandService();
             await _service.AddModulesAsync(assembly: Assembly.GetEntryAssembly(),services: null);
             _client.MessageReceived += HandleCommandAsync;
+            await _client.SetGameAsync("I am a Dolphin");
         }
 
         private async Task HandleCommandAsync(SocketMessage s)

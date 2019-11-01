@@ -30,6 +30,8 @@ namespace RedDolphin
                 string json = File.ReadAllText(configFolder + "/" + configFile);
                 bot = JsonConvert.DeserializeObject<BotConfig>(json);
             }
+
+            
         }
     }
 

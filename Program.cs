@@ -28,7 +28,6 @@ namespace RedDolphin
             _handler = new CommandHandler();
             await _handler.InitializeAsync(_client);
             await Task.Delay(-1);
-
         }
 
         private async Task Log(Discord.LogMessage msg)
